@@ -37,28 +37,28 @@ EOF
 sudo apt update
 ```
 > Install Docker and Kubernetes packages.
-```
 
-# if you want to know the latest kubelet , kubeadm and kubectl versions run below commands
+> if you want to know the latest kubelet , kubeadm and kubectl versions run below commands
 ```
 apt update
 ```
-> apt-cache madison kubeadm
+```apt-cache madison kubeadm
 ```
 
-# find the latest 1.24 version in the list
-# it should look like 1.24.x-00, where x is the latest patch
+> find the latest 1.24 version in the list
+> it should look like 1.24.x-00, where x is the latest patch
 ```
 
-> sudo apt-get install -y docker-ce=5:20.10.7~3-0~ubuntu-$(lsb_release -cs) kubelet=1.24.4-00 kubeadm=1.24.4-00 kubectl=1.24.4-00
+sudo apt-get install -y docker-ce=5:20.10.7~3-0~ubuntu-$(lsb_release -cs) kubelet=1.24.4-00 kubeadm=1.24.4-00 kubectl=1.24.4-00
 ```
-To hold the versions so that the versions will not get accidently upgraded.
+> To hold the versions so that the versions will not get accidently upgraded.
 ```
 > sudo apt-mark hold docker-ce kubelet kubeadm kubectl
 ```
 > Start and enable Docker Services
 ```
 sudo systemctl restart docker
+```
 ```
 sudo systemctl enable docker
 ```
@@ -107,12 +107,19 @@ sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 #[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
 #To see the stack trace of this error execute with --v=5 or higher
 
-run the following commands
+> run the following commands
+```
 
-> sudo rm -rf /etc/containerd/config.toml
-> sudo systemctl restart containerd
 
-#after the above commands run again  "kubeadm init" command
+sudo rm -rf /etc/containerd/config.toml
+```
+```
+sudo systemctl restart containerd
+```
+
+
+
+> after the above commands run again  "kubeadm init" command
 
 > To start using the cluster with current user.
 ```
@@ -142,8 +149,10 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 > Joining the node to the cluster:
 ```
-# use sudo before kubeadm join
-#Please do not copy this command, this is just an example
+```
+> use sudo before kubeadm join
+# Please do not copy this command, this is just an example
+```
 sudo kubeadm join $controller_private_ip:6443 --token $token --discovery-token-ca-cert-hash $hash
 ```
 ## TIP
