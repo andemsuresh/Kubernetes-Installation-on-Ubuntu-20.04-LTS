@@ -149,6 +149,9 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
 sudo kubeadm join $controller_private_ip:6443 --token $token --discovery-token-ca-cert-hash $hash
 ```
+kubeadm join 10.154.0.17:6443 --token wq09wc.wc8t2a26nj73yxst \
+        --discovery-token-ca-cert-hash sha256:336a0df8d9292275bd6157a5550b0922f3723cf5d8d4c84ea702bfdfb9af5584 
+        ```
 ## TIP
 > If the joining code is lost, it can be retrieved using below command
 ```
