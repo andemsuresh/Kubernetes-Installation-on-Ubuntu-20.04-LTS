@@ -7,11 +7,11 @@ This repo is for Installation of latest version of docker &amp; k8s cluster on U
 
 > Once the servers are ready, update them.
 ```
-sudo apt update
+> sudo apt update
 ```
 > After updating,upgrade the servers
 ```
-sudo apt -y upgrade
+> sudo apt -y upgrade
 ```
 ### **Step 2: Install Docker, kubelet, kubeadm and kubectl**
 > Add the GPG key for Docker
@@ -39,11 +39,11 @@ sudo apt update
 ```
 > Install Docker and Kubernetes packages.
 ``
-# if you want to know the laest kubelet , kubeadm and kubectl versions run below commands
+# if you want to know the latest kubelet , kubeadm and kubectl versions run below commands
 
-apt update
+> apt update
 
-apt-cache madison kubeadm
+> apt-cache madison kubeadm
 
 # find the latest 1.24 version in the list
 # it should look like 1.24.x-00, where x is the latest patch
@@ -108,8 +108,8 @@ sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 
 run the following commands
 
-sudo rm -rf /etc/containerd/config.toml
-sudo systemctl restart containerd
+> sudo rm -rf /etc/containerd/config.toml
+> sudo systemctl restart containerd
 
 #after the above commands run again  "kubeadm init" command
 
