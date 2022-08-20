@@ -7,11 +7,11 @@ This repo is for Installation of latest version of docker &amp; k8s cluster on U
 
 > Once the servers are ready, update them.
 ```
-> sudo apt update
+sudo apt update
 ```
 > After updating,upgrade the servers
 ```
-> sudo apt -y upgrade
+sudo apt -y upgrade
 ```
 ### **Step 2: Install Docker, kubelet, kubeadm and kubectl**
 > Add the GPG key for Docker
@@ -24,7 +24,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 ```
 > Add the GPG key for kubernetes
 ```
-> curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 ```
 > Add the kubernetes repository
 ```
@@ -41,7 +41,6 @@ sudo apt update
 > if you want to know the latest kubelet , kubeadm and kubectl versions run below commands
 ```
 apt update
-```
 ```apt-cache madison kubeadm
 ```
 
@@ -53,7 +52,7 @@ sudo apt-get install -y docker-ce=5:20.10.7~3-0~ubuntu-$(lsb_release -cs) kubele
 ```
 > To hold the versions so that the versions will not get accidently upgraded.
 ```
-> sudo apt-mark hold docker-ce kubelet kubeadm kubectl
+sudo apt-mark hold docker-ce kubelet kubeadm kubectl
 ```
 > Start and enable Docker Services
 ```
@@ -64,7 +63,7 @@ sudo systemctl enable docker
 ```
 > Confirm installation by checking the version of kubectl
 ```
-> kubectl version --client && kubeadm version
+kubectl version --client && kubeadm version
 ```
 
 ### **Step 3: Disable Swap**
