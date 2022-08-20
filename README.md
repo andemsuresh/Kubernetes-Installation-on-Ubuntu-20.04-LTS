@@ -38,8 +38,17 @@ EOF
 sudo apt update
 ```
 > Install Docker and Kubernetes packages.
-```
-sudo apt-get install -y docker-ce=5:20.10.7~3-0~ubuntu-$(lsb_release -cs) kubelet=1.21.1-00 kubeadm=1.21.1-00 kubectl=1.21.1-00
+``
+# if you want to know the laest kubelet , kubeadm and kubectl versions run below commands
+
+apt update
+
+apt-cache madison kubeadm
+
+# find the latest 1.24 version in the list
+# it should look like 1.24.x-00, where x is the latest patch
+
+sudo apt-get install -y docker-ce=5:20.10.7~3-0~ubuntu-$(lsb_release -cs) kubelet=1.24.4-00 kubeadm=1.24.4-00 kubectl=1.24.4-00
 ```
 > To hold the versions so that the versions will not get accidently upgraded.
 ```
@@ -87,6 +96,23 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ```
+# if you receive the below error after running the "kubeadm init" command
+#[init] Using Kubernetes version: v1.24.4
+#[preflight] Running pre-flight checks
+#error execution phase preflight: [preflight] Some fatal errors occurred:
+ #       [ERROR CRI]: container runtime is not running: output: E0820 19:06:35.025990    6022 remote_runtime.go:925] "Status from runtime service failed" #err="rpc error: code = Unimplemented desc = unknown service runtime.v1alpha2.RuntimeService"
+#time="2022-08-20T19:06:35Z" level=fatal msg="getting status of runtime: rpc error: code = Unimplemented desc = unknown service #runtime.v1alpha2.RuntimeService"
+#, error: exit status 1
+#[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
+#To see the stack trace of this error execute with --v=5 or higher
+
+run the following commands
+
+sudo rm -rf /etc/containerd/config.toml
+sudo systemctl restart containerd
+
+#after the above commands run again  "kubeadm init" command
+
 > To start using the cluster with current user.
 ```
 mkdir -p $HOME/.kube
@@ -115,6 +141,7 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 > Joining the node to the cluster:
 ```
+# use sudo before kubeadm join
 #Please do not copy this command, this is just an example
 sudo kubeadm join $controller_private_ip:6443 --token $token --discovery-token-ca-cert-hash $hash
 ```
