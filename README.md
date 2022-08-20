@@ -23,9 +23,8 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 > Add the GPG key for kubernetes
-
 ```
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+> curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 ```
 > Add the kubernetes repository
 ```
@@ -38,32 +37,34 @@ EOF
 sudo apt update
 ```
 > Install Docker and Kubernetes packages.
-``
+```
+
 # if you want to know the latest kubelet , kubeadm and kubectl versions run below commands
-
-> apt update
-
+```
+apt update
+```
 > apt-cache madison kubeadm
+```
 
 # find the latest 1.24 version in the list
 # it should look like 1.24.x-00, where x is the latest patch
+```
 
-sudo apt-get install -y docker-ce=5:20.10.7~3-0~ubuntu-$(lsb_release -cs) kubelet=1.24.4-00 kubeadm=1.24.4-00 kubectl=1.24.4-00
+> sudo apt-get install -y docker-ce=5:20.10.7~3-0~ubuntu-$(lsb_release -cs) kubelet=1.24.4-00 kubeadm=1.24.4-00 kubectl=1.24.4-00
 ```
-> To hold the versions so that the versions will not get accidently upgraded.
+To hold the versions so that the versions will not get accidently upgraded.
 ```
-sudo apt-mark hold docker-ce kubelet kubeadm kubectl
+> sudo apt-mark hold docker-ce kubelet kubeadm kubectl
 ```
 > Start and enable Docker Services
 ```
 sudo systemctl restart docker
 ```
-```
 sudo systemctl enable docker
 ```
 > Confirm installation by checking the version of kubectl
 ```
-kubectl version --client && kubeadm version
+> kubectl version --client && kubeadm version
 ```
 
 ### **Step 3: Disable Swap**
