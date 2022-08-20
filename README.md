@@ -41,7 +41,7 @@ sudo apt update
 > if you want to know the latest kubelet , kubeadm and kubectl versions run below commands
 ```
 apt update
-```apt-cache madison kubeadm
+apt-cache madison kubeadm
 ```
 
 > find the latest 1.24 version in the list
@@ -96,7 +96,7 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ```
-# if you receive the below error after running the "kubeadm init" command
+# NOTE:-  if you receive the below error after running the "kubeadm init" command
 #[init] Using Kubernetes version: v1.24.4
 #[preflight] Running pre-flight checks
 #error execution phase preflight: [preflight] Some fatal errors occurred:
@@ -108,16 +108,11 @@ sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 
 > run the following commands
 ```
-
-
 sudo rm -rf /etc/containerd/config.toml
 ```
 ```
 sudo systemctl restart containerd
 ```
-
-
-
 > after the above commands run again  "kubeadm init" command
 
 > To start using the cluster with current user.
